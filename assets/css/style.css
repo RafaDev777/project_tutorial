@@ -1,0 +1,150 @@
+/* import file css yang lain ke dalam file ini */
+@import "animation.css";
+@import "variable.css";
+
+/* container ini digunakan untuk membatasi lebar design km sehingga lebih stabil
+ */
+.container {
+  width: clamp(300px, 80%, 1200px);
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* nah ini bagian untuk contoh bento grid */
+.grid {
+  background: hsl(36, 100%, 99%);
+  width: 100%;
+  max-width: 1500px;
+  height: 90vh;
+  display: grid;
+  gap: 1.5vw;
+  padding: 1vw;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "hero hero hero hero aside2 aside2"
+    "hero hero hero hero aside2 aside2"
+    "hero hero hero hero aside2 aside2"
+    "hero hero hero hero aside2 aside2"
+    "aside3 aside3 aside4 aside4 aside5 aside5";
+}
+.item {
+  border: 1px solid black;
+  border-radius: var(--border-radius-lg);
+  padding: 10px;
+}
+
+.item:hover {
+  background-color: var(--white-color);
+}
+
+.item:nth-child(1) {
+  grid-area: hero;
+}
+
+.item:nth-child(2) {
+  grid-area: aside2;
+}
+
+.item:nth-child(3) {
+  grid-area: aside3;
+}
+
+.item:nth-child(4) {
+  grid-area: aside4;
+}
+
+.item:nth-child(5) {
+  grid-area: aside5;
+}
+
+@media screen and (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "hero hero hero hero"
+      "hero hero hero hero"
+      "aside2 aside2 aside2 aside3"
+      "aside4 aside4 aside5 aside5";
+  }
+}
+
+/* responsive section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 90vh;
+}
+
+.hero div button {
+  max-width: 200px;
+  padding: 10px 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .hero div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* product card */
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+.product_card {
+  width: 100px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: var(--border-radius-md);
+}
+
+/* carousel */
+.carousel {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel_slides {
+  display: flex;
+}
+
+.carousel_item {
+  flex: 1 0 100%;
+  width: 200px;
+  height: 200px;
+}
+
+.carousel_item:nth-child(1) {
+  background-color: red;
+}
+
+/* kinanti navigation */
+
+.kinanti-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

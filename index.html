@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Tutorial</title>
+    <!-- normalize css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+      integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- style.css link -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header></header>
+    <main class="container">
+      <!-- bento grid example -->
+      <div class="grid">
+        <div class="item">item 1</div>
+        <div class="item">item 2</div>
+        <div class="item">item 3</div>
+        <div class="item">item 4</div>
+        <div class="item">item 5</div>
+      </div>
+      <!-- responsive example -->
+      <section class="hero">
+        <h1>This is title</h1>
+        <h3>
+          Lorem, ipsum dolor sit ameat consectetur adipisicing elit. Quibusdam,
+          quod aliquid molestias soluta quasi nobis mollitia recusandae, dolorem
+          error laudantium doloremque quas est tempore culpa exercitationem
+          expedita dolore vitae veritatis.
+        </h3>
+        <div>
+          <button>Primary button</button>
+          <button>Secondary button</button>
+        </div>
+      </section>
+      <section class="product">
+        <h2>Our Products</h2>
+        <div class="product_container">
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+          <div class="product_card">ini product</div>
+        </div>
+      </section>
+      <section class="carousel">
+        <div class="carousel_slides">
+          <div class="carousel_item">slide 1</div>
+          <div class="carousel_item">slide 2</div>
+          <div class="carousel_item">slide 3</div>
+        </div>
+        <button class="carousel_btn" onclick="prevSlide()">prev</button>
+        <button class="carousel_btn" onclick="nextSlide()">next</button>
+      </section>
+      <nav class="kinanti-nav">
+        <div class="menu">
+          <a>menu 1</a>
+          <a href="">menu 2</a>
+          <a href="">menu 3</a>
+        </div>
+        <div>Menu burger</div>
+      </nav>
+      <script src="assets/js/carousel.js"></script>
+    </main>
+  </body>
+</html>
