@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+    }
+    section {
+      height: 100vh;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background-color: gray;
+    }
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      align-content: center;
+      height: 56px;
+    }
+    .menu {
+      display: flex;
+      flex-direction: row;
+      list-style-type: none;
+      gap: 2rem;
+      margin: auto 0;
+    }
+    .menu > li {
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      align-content: center;
+    }
+    .menu > li:last-child {
+      color: white;
+      background-color: black;
+    }
+
+    .hero {
+      background-color: aqua;
+      display: flex;
+      justify-content: center;
+    }
+    .hero > .container {
+      display: flex;
+      padding-top: 56px;
+      justify-content: right;
+      margin: 0 auto;
+      height: 100%;
+      align-items: center;
+    }
+    .wrapper {
+      margin-left: auto;
+      max-width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    .wrapper > h1 {
+      margin-bottom: 24px;
+    }
+  </style>
+  <body>
+    <header>
+      <nav class="container">
+        <img class="logo" src="" alt="logo image" />
+        <ul class="menu">
+          <li>Home</li>
+          <li>About</li>
+          <li>Project</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="wrapper">
+            <h1>TITLE</h1>
+            <p>
+              Lorem ipsum dolor sit amet, officia excepteur ex fugiat
+              reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit
+              ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
+              Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet
+              voluptate voluptate dolor minim nulla est proident. Nostrud
+              officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex
+              occaecat reprehenderit commodo officia dolor Lorem duis laboris
+              cupidatat officia voluptate. Culpa proident adipisicing id nulla
+              nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua
+              reprehenderit commodo ex non excepteur duis sunt velit enim.
+              Voluptate laboris sint cupidatat ullamco ut ea consectetur et est
+              culpa et culpa duis.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section></section>
+      <section></section>
+      <section></section>
+    </main>
+  </body>
+</html>
