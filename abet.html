@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .grid {
+      height: 100vh;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+        "area1 area1 area2 area3"
+        "area1 area1 area2 area3"
+        "area1 area1 area2 area5"
+        "area1 area1 area4 area5"
+        "area1 area1 area4 area5"
+        "area1 area1 area4 area5";
+    }
+    .item {
+      border: 1px solid black;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .item-1 {
+      grid-area: area1;
+    }
+    .item-2 {
+      grid-area: area2;
+    }
+    .item-3 {
+      grid-area: area3;
+    }
+    .item-4 {
+      grid-area: area4;
+    }
+    .item-5 {
+      grid-area: area5;
+    }
+    .item-hover {
+      background-color: gray;
+      position: absolute;
+      bottom: -30%;
+      height: 50%;
+    }
+    .item-hover:hover {
+      bottom: 0;
+      transition: 1s ease-out;
+    }
+  </style>
+  <body>
+    <div class="grid">
+      <div class="item item-1">
+        <div class="item-hover">
+          <h3>test please</h3>
+          <p>bisa kali</p>
+        </div>
+      </div>
+      <div class="item item-2">dua</div>
+      <div class="item item-3">tiga</div>
+      <div class="item item-4">empat</div>
+      <div class="item item-5">lima</div>
+    </div>
+  </body>
+</html>
