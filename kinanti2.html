@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      max-width: 100vw;
+    }
+
+    .hero {
+      height: 100vh;
+    }
+
+    .parallax_group {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax_layer {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .image-1 {
+      background: url("./assets/img/paralax_background.webp") no-repeat center;
+      background-size: cover;
+      z-index: 1;
+    }
+
+    .image-2 {
+      background: url("./assets/img/main-logo-svg.svg") no-repeat center;
+      background-size: cover;
+      z-index: 2;
+      scale: 0.3;
+      filter: drop-shadow(8px 8px 16px rgba(0, 0, 0, 0.75));
+    }
+
+    .image-3 {
+      background: url("./assets/img/paralax_depan.webp") no-repeat center;
+      background-size: cover;
+      z-index: 3;
+      filter: drop-shadow(0px -8px 16px rgba(0, 0, 0, 0.5));
+    }
+  </style>
+  <body>
+    <section class="hero">
+      <div class="parallax_group">
+        <div class="parallax_layer image-1"></div>
+        <div id="test" class="parallax_layer image-2"></div>
+        <div class="parallax_layer image-3"></div>
+      </div>
+    </section>
+    <section style="height: 100vh"></section>
+    <section style="height: 100vh"></section>
+    <script>
+      /* disini kalian menentukan elemen apa yang kalian akan pake untuk
+      parallax. kalian bisa tambahin lagi kalau memang elemenya makin banyak */
+      let par_0 = document.querySelector(".image-1");
+      let par_1 = document.querySelector(".image-2");
+      let par_2 = document.querySelector(".image-3");
+
+      /* di sini kalian menentukan kecepatan geraknya untuk masing2 element sesuaikan
+      bindengan nama variable element kalian. misal par_0 akan menggunakan speed_0 */
+      let speed_0 = 0.3;
+      let speed_1 = 0.6;
+      let speed_2 = 0.3;
+
+      /* di sini untuk digunakan untuk scale element */
+      let minScale = 0.1;
+      let maxScale = 0.3;
+
+      /* ini bagian untuk kalkulasi tidak perlu di edit */
+      let scaleRange = maxScale - minScale;
+      let scrollRange =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      window.addEventListener("scroll", () => {
+        let { scrollY } = window;
+
+        /* nah di sini kalian bisa mengganti arah pergerakannya di bagian .top,
+        bisa diganti dengan berbagai property lain seperti bottom,right, left,
+        bisa di ganti ke yang lain juga, namun harus mengubah rumus dari
+        kecepatan dan scrollnya*/
+        par_0.style.top = speed_0 * scrollY + "px";
+        par_1.style.top = speed_1 * scrollY + "px";
+        par_2.style.top = speed_2 * scrollY + "px";
+
+        /* nah rumus ini di pake untuk scale down atau jadi kalau mau scale up
+        rumusnya maxScale - di ganti menjadi minScale + */
+        let scale = maxScale - scaleRange * Math.min(scrollY / scrollRange, 1);
+
+        /* nah ini untuk aktifasinya*/
+        par_1.style.scale = scale;
+      });
+    </script>
+  </body>
+</html>
