@@ -7,6 +7,7 @@
   </head>
   <style>
     .grid {
+      margin-top: 100px;
       height: 100vh;
       display: grid;
       gap: 20px;
@@ -25,21 +26,29 @@
       border-radius: 10px;
       position: relative;
       overflow: hidden;
+      transition: transform 2s;
+      transform: translateY(300px);
     }
+
     .item-1 {
       grid-area: area1;
+      transform: translateY(300px);
     }
     .item-2 {
       grid-area: area2;
+      transform: translateY(400px);
     }
     .item-3 {
       grid-area: area3;
+      transform: translateY(500px);
     }
     .item-4 {
       grid-area: area4;
+      transform: translateY(600px);
     }
     .item-5 {
       grid-area: area5;
+      transform: translateY(700px);
     }
     .item-hover {
       background-color: gray;
@@ -51,8 +60,12 @@
       bottom: 0;
       transition: 1s ease-out;
     }
+    .item.active {
+      transform: translateY(0);
+    }
   </style>
   <body>
+    <div style="height: 100vh; background-color: gray"></div>
     <div class="grid">
       <div class="item item-1">
         <div class="item-hover">
@@ -65,5 +78,40 @@
       <div class="item item-4">empat</div>
       <div class="item item-5">lima</div>
     </div>
+    <script>
+      function scrollTrigger(selector, options = {}) {
+        let elements = document.querySelectorAll(selector);
+        elements = Array.from(elements);
+        elements.forEach((element) => {
+          addObserver(element, options);
+        });
+      }
+
+      function addObserver(element, options) {
+        if (!("IntersectionObserver" in window)) {
+          if (options.cb) {
+            options.cb(element);
+          } else {
+            entry.target.classList.add(".active");
+          }
+          return;
+        }
+        let observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (options.cb) {
+                options.cb(element);
+              } else {
+                entry.target.classList.add("active");
+              }
+              observer.unobserve(entry.target);
+            }
+          });
+        }, options);
+        observer.observe(element);
+      }
+
+      scrollTrigger(".item");
+    </script>
   </body>
 </html>
