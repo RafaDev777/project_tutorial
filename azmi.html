@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .marquee {
+      display: flex;
+      overflow: hidden;
+    }
+    .marquee h1 {
+      font-size: 5em;
+      white-space: nowrap;
+    }
+  </style>
+  <body>
+    <main>
+      <section>
+        <div class="marquee">
+          <h1>AZMI * FEN2 * JESS * YA2Q *</h1>
+        </div>
+      </section>
+      <section></section>
+      <section></section>
+      <section></section>
+    </main>
+    <script>
+      function Marquee(selector, speed) {
+        const parentSelector = document.querySelector(selector);
+        const clone = parentSelector.innerHTML;
+        const firstElement = parentSelector.children[0];
+        let i = 0;
+        console.log(firstElement);
+        parentSelector.insertAdjacentHTML("beforeend", clone);
+        parentSelector.insertAdjacentHTML("beforeend", clone);
+
+        setInterval(function () {
+          firstElement.style.marginLeft = `-${i}px`;
+          if (i > firstElement.clientWidth) {
+            i = 0;
+          }
+          i = i + speed;
+        }, 0);
+      }
+
+      //after window is completed load
+      //1 class selector for marquee
+      //2 marquee speed 0.2
+      window.addEventListener("load", Marquee(".marquee", 0.2));
+    </script>
+  </body>
+</html>
