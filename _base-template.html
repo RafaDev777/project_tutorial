@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+    /* gunakan code di bawah untuk sticky header */
+    /*
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: white;
+    }
+  */
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 80px;
+      align-items: center;
+    }
+    .menu {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      list-style-type: none;
+    }
+    .menu-list {
+      padding: 16px 32px;
+      background-color: orange;
+      border-radius: 16px;
+    }
+    section {
+      min-height: 100vh;
+    }
+    section > div {
+      min-height: 100vh;
+      background-color: rgba(10, 10, 10, 0.5);
+    }
+    section:nth-child(1) {
+      background-color: gray;
+    }
+    section:nth-child(2) {
+      background-color: gainsboro;
+    }
+  </style>
+  <body>
+    <header>
+      <nav class="container">
+        <div class="logo-container">
+          <img src="" alt="logo image" class="logo" />
+        </div>
+        <ul class="menu">
+          <li class="menu-list">menu 1</li>
+          <li class="menu-list">menu 2</li>
+          <li class="menu-list">menu 3</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="container"><h2>title</h2></div>
+      </section>
+      <section class="second-section">
+        <div class="container"><h2>title 2</h2></div>
+      </section>
+      <section class="third-section">
+        <div class="container"><h2>title 3</h2></div>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
