@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* card carousel */
+    .card_carousel {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      font-family: Arial;
+    }
+    .card_carousel__list {
+      display: flex;
+      list-style: none;
+      position: relative;
+      height: 300px;
+      width: 100%;
+      justify-content: center;
+      perspective: 300px;
+    }
+
+    .card_carousel__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0px;
+      width: 150px;
+      height: 250px;
+      border-radius: 12px;
+      box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.5);
+      position: absolute;
+      transition: all 0.3s ease-in;
+    }
+
+    .card_carousel__item[data-pos="0"] {
+      z-index: 5;
+    }
+
+    .card_carousel__item[data-pos="-1"],
+    .card_carousel__item[data-pos="1"] {
+      opacity: 0.7;
+      filter: blur(1px) grayscale(10%);
+    }
+
+    .card_carousel__item[data-pos="-1"] {
+      transform: translateX(-25vh) scale(0.7);
+      z-index: 4;
+    }
+
+    .card_carousel__item[data-pos="1"] {
+      transform: translateX(25vh) scale(0.7);
+      z-index: 4;
+    }
+
+    .card_carousel__item[data-pos="-2"],
+    .card_carousel__item[data-pos="2"] {
+      opacity: 0.4;
+      filter: blur(3px) grayscale(20%);
+    }
+
+    .card_carousel__item[data-pos="-2"] {
+      transform: translateX(-50vh) scale(0.7);
+      z-index: 3;
+    }
+
+    .card_carousel__item[data-pos="2"] {
+      transform: translateX(50vh) scale(0.7);
+      z-index: 3;
+    }
+
+    bg-carousel {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    bg-carousel:nth-child(1) {
+      background-image: url(/assets/img/paralax_depan.webp);
+    }
+    bg-carousel:nth-child(2) {
+      background-image: url(/assets/img/paralax_depan.webp);
+    }
+    bg-carousel:nth-child(3) {
+      background-image: url(/assets/img/paralax_depan.webp);
+    }
+    bg-carousel:nth-child(4) {
+      background-image: url(/assets/img/paralax_depan.webp);
+    }
+    bg-carousel:nth-child(5) {
+      background-image: url(/assets/img/paralax_depan.webp);
+    }
+  </style>
+  <body>
+    <div class="card_carousel">
+      <ul class="card_carousel__list">
+        <li class="card_carousel__item bg-carousel" data-pos="-2">1</li>
+        <li class="card_carousel__item bg-carousel" data-pos="-1">2</li>
+        <li class="card_carousel__item bg-carousel" data-pos="0">3</li>
+        <li class="card_carousel__item bg-carousel" data-pos="1">4</li>
+        <li class="card_carousel__item bg-carousel" data-pos="2">5</li>
+      </ul>
+    </div>
+    <script>
+      const state = {};
+      const carouselList = document.querySelector(".card_carousel__list");
+      const carouselItems = document.querySelectorAll(".card_carousel__item");
+      const elems = Array.from(carouselItems);
+
+      carouselList.addEventListener("click", function (event) {
+        var newActive = event.target;
+        var isItem = newActive.closest(".card_carousel__item");
+
+        if (
+          !isItem ||
+          newActive.classList.contains("card_carousel__item_active")
+        ) {
+          return;
+        }
+
+        update(newActive);
+      });
+
+      const update = function (newActive) {
+        const newActivePos = newActive.dataset.pos;
+
+        const current = elems.find((elem) => elem.dataset.pos == 0);
+        const prev = elems.find((elem) => elem.dataset.pos == -1);
+        const next = elems.find((elem) => elem.dataset.pos == 1);
+        const first = elems.find((elem) => elem.dataset.pos == -2);
+        const last = elems.find((elem) => elem.dataset.pos == 2);
+
+        current.classList.remove("_carousel__item_active");
+
+        [current, prev, next, first, last].forEach((item) => {
+          var itemPos = item.dataset.pos;
+
+          item.dataset.pos = getPos(itemPos, newActivePos);
+        });
+      };
+
+      const getPos = function (current, active) {
+        const diff = current - active;
+
+        if (Math.abs(current - active) > 2) {
+          return -current;
+        }
+
+        return diff;
+      };
+    </script>
+  </body>
+</html>
