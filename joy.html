@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- Still Need Refactoring -->
+  <style>
+    .parent {
+      min-width: 100vw;
+      top: 0;
+      left: 0;
+      height: 60px;
+    }
+    .pos-fix {
+      position: fixed;
+    }
+    .menu {
+      background-color: orange;
+      transform: translateY(-100px);
+      transition: transform 1s ease-in-out;
+    }
+
+    .parent:hover .menu {
+      transform: translateY(0);
+    }
+
+    .dis-flex {
+      display: flex;
+    }
+    .child {
+      height: 100%;
+    }
+    .menu {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+    .logo {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      height: 60px;
+      width: 120px;
+      padding: 10px;
+      border-radius: 0 0 200px 200px;
+      background-color: white;
+    }
+    .logo-image {
+      width: inherit;
+      height: inherit;
+      position: fixed;
+      transition: opacity 1s ease-in-out;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .logo-image-1 {
+      background-image: url(./assets/img/logo-sample.png);
+      background-size: contain;
+      z-index: 2;
+      opacity: 1;
+    }
+    .logo-image-2 {
+      background-image: url(./assets/img/logo-sample2.png);
+      background-size: contain;
+      z-index: 1;
+      opacity: 0;
+    }
+    .parent:hover .logo-image-1 {
+      opacity: 0;
+    }
+    .parent:hover .logo-image-2 {
+      opacity: 1;
+    }
+    section {
+      min-width: 100vw;
+      min-height: 100vh;
+    }
+    .section-sample:nth-child(odd) {
+      background-color: gray;
+    }
+  </style>
+  <body>
+    <header class="parent pos-fix">
+      <nav class="child pos-rel">
+        <div class="menu dis-flex">
+          <div class="menu-list">Menu</div>
+          <div class="menu-list">Menu</div>
+          <div class="menu-list">Menu</div>
+          <div class="menu-list">Menu</div>
+        </div>
+        <div class="menu-list logo pos-fix">
+          <div class="logo-image logo-image-1"></div>
+          <div class="logo-image logo-image-2"></div>
+        </div>
+      </nav>
+    </header>
+    <section class="section-sample"></section>
+    <section class="section-sample"></section>
+    <section class="section-sample"></section>
+    <script></script>
+  </body>
+</html>
