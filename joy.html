@@ -117,40 +117,47 @@
     <section class="section-sample"></section>
     <script>
       let lastScrollY = window.scrollY;
-      let maxVal = 10;
-      let minVal = 0;
+      const maxVal = 10; //change this value for speed
+      const minVal = 0;
+      const increment = 5;
       let val = 0;
-      let increment = 5;
 
+      const menuEl = document.querySelector(".menu");
+      const logoEl = document.querySelector(".logo");
+      const logoImg1El = document.querySelector(".logo-image-1");
+      const logoImg2El = document.querySelector(".logo-image-2");
+
+      function updateUI() {
+        const isMaxVal = val === maxVal;
+        const isMinVal = val === minVal;
+
+        menuEl.style.transform = `translateY(${isMaxVal ? "-100px" : isMinVal ? "0" : ""})`;
+        logoEl.style.backgroundColor = isMaxVal
+          ? "orange"
+          : isMinVal
+            ? "white"
+            : "";
+        logoImg1El.style.opacity = isMaxVal ? 1 : isMinVal ? 0 : "";
+        logoImg2El.style.opacity = isMinVal ? 1 : isMaxVal ? 0 : "";
+      }
       window.addEventListener("scroll", () => {
         let currentScrollY = window.scrollY;
 
+        // calc the difference in scroll position
         let diff = currentScrollY - lastScrollY;
 
+        // determine the number + or -
         let change = Math.floor(diff / increment);
 
+        // update value based on scroll direction
         if (change !== 0) {
           val += change;
+
+          // ensure val is between the value range
           val = Math.max(minVal, Math.min(maxVal, val));
 
           lastScrollY += change * increment;
-        }
-        console.log(`val:${val}`);
-        let menuEl = document.querySelector(".menu");
-        let logoEl = document.querySelector(".logo");
-        let logoImg1El = document.querySelector(".logo-image-1");
-        let logoImg2El = document.querySelector(".logo-image-2");
-
-        if (val === maxVal) {
-          menuEl.style.transform = "translateY(-100px)";
-          logoEl.style.backgroundColor = "orange";
-          logoImg1El.style.opacity = 1;
-          logoImg2El.style.opacity = 0;
-        } else if (val === minVal) {
-          menuEl.style.transform = "translateY(0)";
-          logoEl.style.backgroundColor = "white";
-          logoImg1El.style.opacity = 0;
-          logoImg2El.style.opacity = 1;
+          updateUI();
         }
       });
     </script>
