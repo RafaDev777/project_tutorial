@@ -5,40 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <!-- Still Need Refactoring -->
   <style>
     .parent {
       min-width: 100vw;
       top: 0;
       left: 0;
       height: 60px;
-    }
-    .pos-fix {
       position: fixed;
     }
-    .menu {
-      background-color: orange;
-      transform: translateY(-100px);
-      transition: transform 1s ease-in-out;
-    }
 
-    .parent:hover .menu {
-      transform: translateY(0);
-    }
-
-    .dis-flex {
-      display: flex;
-    }
     .child {
       height: 100%;
     }
+
+    /* Menu Styling */
     .menu {
+      display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       height: 100%;
+      background-color: orange;
+      transform: translateY(-100px); /* awal menu di umpetin */
+      transition: transform 1s ease-in-out;
     }
+
+    .parent:hover .menu {
+      transform: translateY(
+        0
+      ) !important; /* di tunjukin pas hover,
+      !important untuk overide code yang di hasilkan si javascript*/
+    }
+    .menu-list:hover {
+      color: red;
+    }
+
+    /* Logo Styling */
     .logo {
+      position: fixed;
       left: 50%;
       transform: translateX(-50%);
       top: 0;
@@ -46,8 +50,14 @@
       width: 120px;
       padding: 10px;
       border-radius: 0 0 200px 200px;
-      background-color: white;
+      background-color: orange;
+      transition: all 1s ease-in-out;
     }
+
+    .parent:hover .logo {
+      background-color: white !important;
+    } /* pada saat .parent hover .logo jadi bg putih */
+
     .logo-image {
       width: inherit;
       height: inherit;
@@ -56,24 +66,29 @@
       background-repeat: no-repeat;
       background-position: center;
     }
+
     .logo-image-1 {
       background-image: url(./assets/img/logo-sample.png);
       background-size: contain;
-      z-index: 2;
+      z-index: 2; /* dia harus lebih atas d banding image 2*/
       opacity: 1;
     }
     .logo-image-2 {
       background-image: url(./assets/img/logo-sample2.png);
       background-size: contain;
       z-index: 1;
-      opacity: 0;
+      opacity: 0; /* awal di umpetin dulu */
     }
+
     .parent:hover .logo-image-1 {
-      opacity: 0;
+      opacity: 0 !important;
     }
+
     .parent:hover .logo-image-2 {
-      opacity: 1;
+      opacity: 1 !important;
     }
+
+    /* Section Styling */
     section {
       min-width: 100vw;
       min-height: 100vh;
@@ -84,14 +99,14 @@
   </style>
   <body>
     <header class="parent pos-fix">
-      <nav class="child pos-rel">
+      <nav class="child">
         <div class="menu dis-flex">
           <div class="menu-list">Menu</div>
           <div class="menu-list">Menu</div>
           <div class="menu-list">Menu</div>
           <div class="menu-list">Menu</div>
         </div>
-        <div class="menu-list logo pos-fix">
+        <div class="logo pos-fix">
           <div class="logo-image logo-image-1"></div>
           <div class="logo-image logo-image-2"></div>
         </div>
@@ -100,6 +115,44 @@
     <section class="section-sample"></section>
     <section class="section-sample"></section>
     <section class="section-sample"></section>
-    <script></script>
+    <script>
+      let lastScrollY = window.scrollY;
+      let maxVal = 10;
+      let minVal = 0;
+      let val = 0;
+      let increment = 5;
+
+      window.addEventListener("scroll", () => {
+        let currentScrollY = window.scrollY;
+
+        let diff = currentScrollY - lastScrollY;
+
+        let change = Math.floor(diff / increment);
+
+        if (change !== 0) {
+          val += change;
+          val = Math.max(minVal, Math.min(maxVal, val));
+
+          lastScrollY += change * increment;
+        }
+        console.log(`val:${val}`);
+        let menuEl = document.querySelector(".menu");
+        let logoEl = document.querySelector(".logo");
+        let logoImg1El = document.querySelector(".logo-image-1");
+        let logoImg2El = document.querySelector(".logo-image-2");
+
+        if (val === maxVal) {
+          menuEl.style.transform = "translateY(-100px)";
+          logoEl.style.backgroundColor = "orange";
+          logoImg1El.style.opacity = 1;
+          logoImg2El.style.opacity = 0;
+        } else if (val === minVal) {
+          menuEl.style.transform = "translateY(0)";
+          logoEl.style.backgroundColor = "white";
+          logoImg1El.style.opacity = 0;
+          logoImg2El.style.opacity = 1;
+        }
+      });
+    </script>
   </body>
 </html>
