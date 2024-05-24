@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const getElements = (selector) => document.querySelectorAll(selector);
   const getElement = (selector) => document.querySelector(selector);
 
-  const getBgImgs = () => getElements(settings.bgImg);
+  // const getBgImgs = () => getElements(settings.bgImgg);
+  const getBgImgs = () => getElements(_defaults.bgImg);
   const getListItems = () => getElements(settings.listItem);
   const getList = () => getElement(settings.list);
   const getCarousel = () => getElement(settings.carousel);
